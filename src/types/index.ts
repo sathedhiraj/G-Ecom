@@ -10,6 +10,8 @@ export interface User {
   state?: string;
   zipCode?: string;
   country?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Category {

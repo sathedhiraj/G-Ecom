@@ -22,6 +22,7 @@ import {
   ShoppingBag,
   ArrowRight,
 } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 
 function formatPrice(price: number) {
   return `₹${price.toLocaleString('en-IN')}`;
@@ -155,9 +156,12 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-6">
-        <h1 className="mb-6 text-2xl font-bold text-gray-900">
-          Shopping Cart <span className="text-base font-normal text-gray-500">({itemCount} item{itemCount !== 1 ? 's' : ''})</span>
-        </h1>
+        <div className="mb-6 flex items-center gap-3">
+          <BackButton />
+          <h1 className="text-2xl font-bold text-gray-900">
+            Shopping Cart <span className="text-base font-normal text-gray-500">({itemCount} item{itemCount !== 1 ? 's' : ''})</span>
+          </h1>
+        </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Cart Items */}

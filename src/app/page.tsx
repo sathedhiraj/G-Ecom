@@ -17,6 +17,7 @@ import OrdersPage from '@/components/customer/OrdersPage';
 import OrderDetailPage from '@/components/customer/OrderDetailPage';
 import LoginPage from '@/components/customer/LoginPage';
 import RegisterPage from '@/components/customer/RegisterPage';
+import ProfilePage from '@/components/customer/ProfilePage';
 import AdminLayout from '@/components/admin/AdminLayout';
 
 function CustomerLayout({ children }: { children: React.ReactNode }) {
@@ -79,6 +80,8 @@ export default function Home() {
         return <LoginPage />;
       case 'register':
         return <RegisterPage />;
+      case 'profile':
+        return <ProfilePage />;
       default:
         return <HomePage />;
     }

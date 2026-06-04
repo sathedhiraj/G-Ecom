@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowLeft, MapPin, CreditCard, Package } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 import type { Order } from '@/types';
 
 function formatPrice(price: number) {
@@ -100,9 +101,7 @@ export default function OrderDetailPage() {
       <div className="mx-auto max-w-4xl px-4 py-6">
         {/* Header */}
         <div className="mb-6 flex items-center gap-3">
-          <Button variant="ghost" size="icon" onClick={() => navigate('orders')}>
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+          <BackButton fallbackPage="orders" />
           <div>
             <h1 className="text-xl font-bold text-gray-900">
               Order #{order.id.slice(-8).toUpperCase()}
@@ -236,7 +235,7 @@ export default function OrderDetailPage() {
             variant="outline"
             className="w-full"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Orders
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to My Orders
           </Button>
         </div>
       </div>

@@ -18,9 +18,9 @@ import {
   Truck,
   Tag,
   CheckCircle,
-  ArrowLeft,
   Loader2,
 } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 
 function formatPrice(price: number) {
   return `₹${price.toLocaleString('en-IN')}`;
@@ -151,9 +151,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-6">
         <div className="mb-6 flex items-center gap-3">
-          <Button variant="ghost" size="icon" onClick={() => navigate('cart')}>
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+          <BackButton fallbackPage="cart" />
           <h1 className="text-2xl font-bold text-gray-900">Checkout</h1>
         </div>
 

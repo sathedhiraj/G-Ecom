@@ -28,6 +28,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 import type { Product, Category } from '@/types';
 
 function formatPrice(price: number) {
@@ -283,9 +284,10 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-4">
-        {/* Top Search & Sort Bar */}
+        {/* Top Bar with Back Button, Search & Sort */}
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-1 items-center gap-3">
+            <BackButton />
             <div className="relative flex-1 sm:max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
               <Input

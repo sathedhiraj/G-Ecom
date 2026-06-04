@@ -24,6 +24,7 @@ import {
   RotateCcw,
   Package,
 } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 import type { Product, Review } from '@/types';
 
 function formatPrice(price: number) {
@@ -208,6 +209,7 @@ export default function ProductDetailPage() {
       <div className="mx-auto max-w-7xl px-4 py-4">
         {/* Breadcrumb */}
         <nav className="mb-4 flex items-center gap-1 text-sm text-gray-500">
+          <BackButton fallbackPage="products" className="mr-1 -ml-2" />
           <button onClick={() => navigate('home')} className="hover:text-[#2874f0]">Home</button>
           <ChevronRight className="h-3 w-3" />
           <button onClick={() => navigate('products')} className="hover:text-[#2874f0]">Products</button>

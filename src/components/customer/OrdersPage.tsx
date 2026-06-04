@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Package, ChevronRight, ShoppingBag } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 import type { Order } from '@/types';
 
 function formatPrice(price: number) {
@@ -104,7 +105,10 @@ export default function OrdersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-4xl px-4 py-6">
-        <h1 className="mb-6 text-2xl font-bold text-gray-900">My Orders</h1>
+        <div className="mb-6 flex items-center gap-3">
+          <BackButton />
+          <h1 className="text-2xl font-bold text-gray-900">My Orders</h1>
+        </div>
 
         <div className="space-y-4">
           {orders.map((order) => {

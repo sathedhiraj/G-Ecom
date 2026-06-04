@@ -21,3 +21,26 @@ Stage Summary:
 - Frontend: 12 customer pages + 9 admin pages = 21 components total
 - State management: 4 Zustand stores
 - Login credentials: admin@g-ecom.com/admin123, john@example.com/password123
+
+---
+Task ID: 2
+Agent: Main Coordinator
+Task: Fix Profile page and add Back button to all pages
+
+Work Log:
+- Investigated the Profile page issue: the 'profile' route existed in PageRoute type but had no component or switch case in page.tsx, causing navigation to fall through to HomePage
+- Created full ProfilePage component with: gradient header with avatar, quick stats (orders/wishlist/cart), editable personal info (name, phone, email, role, member since), editable address (street, city, state, zip, country), tabbed interface, quick action buttons, edit/save/cancel functionality
+- Created PUT /api/auth/profile API endpoint for updating user profile data
+- Added ProfilePage to page.tsx routing (case 'profile')
+- Added createdAt and updatedAt fields to User type interface
+- Created reusable BackButton component with navigation history support
+- Enhanced ui-store with navigation history tracking (navigationHistory array, goBack method)
+- Added BackButton to all 9 customer pages: Login, Register, Profile, Products, ProductDetail, Cart, Wishlist, Checkout, Orders, OrderDetail
+- All lint checks pass with zero errors
+- Verified via Agent Browser: Profile page loads correctly, shows user data, edit mode works, back button navigates correctly with history
+
+Stage Summary:
+- Profile page is now fully functional with edit/save capability
+- Back button added to ALL pages with smart navigation history (goes back to previous page, not just a fixed page)
+- New files: ProfilePage.tsx, BackButton.tsx, /api/auth/profile/route.ts
+- Modified files: page.tsx, ui-store.ts, types/index.ts, and all 9 customer page components

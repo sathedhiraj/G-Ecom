@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { UserPlus, Loader2 } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 
 export default function RegisterPage() {
   const { navigate } = useUIStore();
@@ -63,7 +64,11 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-[70vh] items-center justify-center bg-gray-50 px-4 py-12">
-      <Card className="w-full max-w-md">
+      <div className="w-full max-w-md">
+        <div className="mb-4">
+          <BackButton />
+        </div>
+        <Card>
         <CardHeader className="text-center">
           <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-[#2874f0]">
             <UserPlus className="h-6 w-6 text-white" />
@@ -158,6 +163,7 @@ export default function RegisterPage() {
           </form>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Star, Heart, ShoppingCart, Trash2 } from 'lucide-react';
+import BackButton from '@/components/layout/BackButton';
 
 function formatPrice(price: number) {
   return `₹${price.toLocaleString('en-IN')}`;
@@ -93,9 +94,12 @@ export default function WishlistPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-6">
-        <h1 className="mb-6 text-2xl font-bold text-gray-900">
-          My Wishlist <span className="text-base font-normal text-gray-500">({items.length} item{items.length !== 1 ? 's' : ''})</span>
-        </h1>
+        <div className="mb-6 flex items-center gap-3">
+          <BackButton />
+          <h1 className="text-2xl font-bold text-gray-900">
+            My Wishlist <span className="text-base font-normal text-gray-500">({items.length} item{items.length !== 1 ? 's' : ''})</span>
+          </h1>
+        </div>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => {
