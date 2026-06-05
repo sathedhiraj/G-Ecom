@@ -61,8 +61,8 @@ export default function ProfilePage() {
           const cartData = await cartRes.json();
 
           setOrderCount(ordersData.orders?.length || 0);
-          setWishlistCount(wishlistData.items?.length || 0);
-          setCartCount(cartData.items?.length || 0);
+          setWishlistCount(wishlistData.wishlist?.length || 0);
+          setCartCount(cartData.cart?.items?.length || 0);
         }
       } catch {
         // Silently handle

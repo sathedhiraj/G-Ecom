@@ -61,7 +61,7 @@ export default function CartPage() {
 
   const handleQuantityChange = async (itemId: string, quantity: number) => {
     if (quantity < 1) return;
-    await updateItem(itemId, quantity);
+    await updateItem(itemId, quantity, user?.id);
   };
 
   const handleRemove = async (itemId: string, productName: string) => {

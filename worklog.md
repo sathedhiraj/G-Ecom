@@ -44,3 +44,37 @@ Stage Summary:
 - Back button added to ALL pages with smart navigation history (goes back to previous page, not just a fixed page)
 - New files: ProfilePage.tsx, BackButton.tsx, /api/auth/profile/route.ts
 - Modified files: page.tsx, ui-store.ts, types/index.ts, and all 9 customer page components
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Fix Add to Cart, Buy Now, and Wishlist buttons not working
+
+Work Log:
+- Investigated the project structure and identified the root cause
+- Found API response parsing mismatches in Zustand stores
+- Cart API returns `{ cart: { items: [...] } }` but cart store was reading `data.items` (undefined)
+- Wishlist API returns `{ wishlist: [...] }` but wishlist store was reading `data.items` (undefined)
+- Wishlist POST returns `{ wishlistItem: singleItem }` not an array
+- Cart PUT returns `{ cartItem: updatedItem }` single item, not full cart
+- Profile page was also using wrong keys for stats (`data.items` instead of `data.wishlist` and `data.cart.items`)
+
+- Fixed cart-store.ts: Changed `data.items` to `data.cart?.items` in fetchCart and addItem; Updated updateItem to handle single-item response and update in-place
+- Fixed wishlist-store.ts: Changed `data.items` to `data.wishlist` in fetchWishlist; Changed addItem to re-fetch full wishlist after POST instead of trying to parse single item
+- Fixed CartPage.tsx: Pass userId to updateItem for potential fallback re-fetch
+- Fixed ProfilePage.tsx: Changed `wishlistData.items?.length` to `wishlistData.wishlist?.length` and `cartData.items?.length` to `cartData.cart?.items?.length`
+
+- Verified all fixes with Agent Browser:
+  - Login works correctly
+  - Cart badge shows correct item count
+  - Wishlist badge shows correct item count
+  - Add to Cart button: POST /api/cart returns 200, badge count increases ✅
+  - Buy Now button: Adds to cart and navigates to checkout page ✅
+  - Wishlist button: POST /api/wishlist returns 201, badge count increases ✅
+
+Stage Summary:
+- Root cause: API response keys didn't match Zustand store parsing logic
+- Fixed 4 files: cart-store.ts, wishlist-store.ts, CartPage.tsx, ProfilePage.tsx
+- All three buttons (Add to Cart, Buy Now, Wishlist) are now fully functional
+- Back button was already present on all relevant pages
+- Profile page stats now display correct counts

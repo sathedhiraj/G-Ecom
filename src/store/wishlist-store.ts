@@ -21,7 +21,8 @@ export const useWishlistStore = create<WishlistState>((set, get) => ({
       const res = await fetch(`/api/wishlist?userId=${userId}`);
       if (res.ok) {
         const data = await res.json();
-        const items: WishlistItem[] = data.items || [];
+        // API returns { wishlist: [...] }
+        const items: WishlistItem[] = data.wishlist || [];
         set({ items, isLoading: false });
       } else {
         set({ items: [], isLoading: false });
@@ -41,11 +42,16 @@ export const useWishlistStore = create<WishlistState>((set, get) => ({
       });
 
       if (res.ok) {
-        const data = await res.json();
-        const items: WishlistItem[] = data.items || [];
-        set({ items, isLoading: false });
+        // POST returns { wishlistItem: singleItem }
+        // Re-fetch the full wishlist to ensure consistency
+        await get().fetchWishlist(userId);
       } else {
-        set({ isLoading: false });
+        // If 409 (already in wishlist), re-fetch to sync state
+        if (res.status === 409) {
+          await get().fetchWishlist(userId);
+        } else {
+          set({ isLoading: false });
+        }
       }
     } catch {
       set({ isLoading: false });
